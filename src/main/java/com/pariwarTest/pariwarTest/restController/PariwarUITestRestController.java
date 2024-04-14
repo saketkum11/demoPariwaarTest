@@ -18,8 +18,7 @@ public class PariwarUITestRestController {
                 "   },\n" +
                 "   {\n" +
                 "       \"countryId\": 2,\n" +
-                "       \"countryName\": \"Pakistan\",\n" +
-                "       \"country\": \"India\"\n" +
+                "       \"countryName\": \"Pakistan\"\n" +
                 "   }\n" +
                 "]\n";
         return  hardcodedCountriesList;
@@ -64,7 +63,7 @@ public class PariwarUITestRestController {
             default -> "[]"; //Empty list
         };
     }
-
+  // note this api is for country state list
     @GetMapping("/metadata/address/country/{countryId}/states")
     public String getAllStatesOfCountry(Model model, @PathVariable("countryId") int countryId){
         final String  hardCodedStateList = "[\n" +
@@ -85,4 +84,84 @@ public class PariwarUITestRestController {
         return  hardCodedStateList;
     }
     // Note this is how we can keep hard coding the response for requests.
+
+    // api response for to get state districts data
+    @GetMapping("/metadata/address/state/{stateId}/districts")
+    public String UserDistrict(Model model, @PathVariable("stateId") int stateId){
+        final String  hardCodedThridList = "[\n" +
+                "   {\n" +
+                "       \"districtId\": 19,\n" +
+                "       \"districtName\": \"Nicobar\"\n" +
+                "   },\n" +
+                "   {\n" +
+                "       \"districtId\": 20,\n" +
+                "       \"districtName\": \"North and Middle Andaman\"\n" +
+                "   },\n" +
+                "   {\n" +
+                "       \"districtId\": 23,\n" +
+                "       \"districtName\": \"South Andaman\"\n" +
+                "   }\n" +
+                "]\n";
+        final String hardCodedDistrictsSecondList = "[\n" +
+                "   {\n" +
+                "       \"districtId\": 13,\n" +
+                "       \"districtName\": \"Andaman And Nicobar Islands\"\n" +
+                "   },\n" +
+                "   {\n" +
+                "       \"districtId\": 47,\n" +
+                "       \"districtName\": \"Uttarakhand\"\n" +
+                "   },\n" +
+                "   {\n" +
+                "       \"districtId\": 49,\n" +
+                "       \"districtName\": \"ladakh\"\n" +
+                "   }\n" +
+                "]\n";
+        return switch (stateId){
+            case 1 -> hardCodedDistrictsSecondList;
+            case 2 -> hardCodedThridList ;
+            default -> "[]";
+
+        };
+
+    }
+    // This API can be used to get tehsils date of every district
+    @GetMapping("/metadata/address/district/{districtId}/tehsils")
+    public String UserTehsils(Model model, @PathVariable("districtId") int districtId){
+        final String  hardCodedSecondTehsilList = "[\n" +
+                "   {\n" +
+                "       \"tehsilId\": 3,\n" +
+                "       \"tehsilName\": \"Nicobar \"\n" +
+                "   },\n" +
+                "   {\n" +
+                "       \"tehsilId\": 13,\n" +
+                "       \"tehsilName\": \"Uttarakhand\"\n" +
+                "   },\n" +
+                "   {\n" +
+                "       \"tehsilId\": 24,\n" +
+                "       \"tehsilName\": \"Loni\"\n" +
+                "   }\n" +
+                "]\n";
+        final String  hardCodedFirstTehsilList = "[\n" +
+                "   {\n" +
+                "       \"tehsilId\": 13,\n" +
+                "       \"tehsilName\": \"Andaman And Nicobar Islands\"\n" +
+                "   },\n" +
+                "   {\n" +
+                "       \"tehsilId\": 47,\n" +
+                "       \"tehsilName\": \"Uttarakhand\"\n" +
+                "   },\n" +
+                "   {\n" +
+                "       \"tehsilId\": 49,\n" +
+                "       \"tehsilName\": \"ladakh\"\n" +
+                "   }\n" +
+                "]\n";
+
+        return  switch (districtId){
+            case 1 -> hardCodedFirstTehsilList;
+            case 2 -> hardCodedSecondTehsilList;
+            default -> "[]";
+        };
+    }
+
+
 }

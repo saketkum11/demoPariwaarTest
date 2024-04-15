@@ -162,6 +162,43 @@ public class PariwarUITestRestController {
             default -> "[]";
         };
     }
+    // api for to get tehsils village address
+    @GetMapping("/metadata/address/tehsil/{tehsilId}/villages")
+    public String UserVillageAddress(Model model, @PathVariable("tehsilId") int tehsilId){
+         final  String hardCodedFirstTehsil = "[\n" +
+                 "   {\n" +
+                 "       \"villageTownId\": 13,\n" +
+                 "       \"villageTownName\": \"Kimios Village New\"\n" +
+                 "   },\n" +
+                 "   {\n" +
+                 "       \"villageTownId\": 47,\n" +
+                 "       \"villageTownName\": \"Alrong\"\n" +
+                 "   },\n" +
+                 "   {\n" +
+                 "       \"villageTownId\": 49,\n" +
+                 "       \"villageTownName\": \"Teetop\"\n" +
+                 "   }\n" +
+                 "]\n";
+       final String hardcodedSecondTehshil = "[\n" +
+               "   {\n" +
+               "       \"villageTownId\": 13,\n" +
+               "       \"villageTownName\": \"nagarpur\"\n" +
+               "   },\n" +
+               "   {\n" +
+               "       \"villageTownId\": 47,\n" +
+               "       \"villageTownName\": \"sarojani nagar\"\n" +
+               "   },\n" +
+               "   {\n" +
+               "       \"villageTownId\": 49,\n" +
+               "       \"villageTownName\": \"mukharjeenagar\"\n" +
+               "   }\n" +
+               "]\n";
+         return switch (tehsilId){
+             case 1 -> hardCodedFirstTehsil;
+             case 2 -> hardcodedSecondTehshil;
+             default -> "[]";
+         };
+    }
 
 
 }
